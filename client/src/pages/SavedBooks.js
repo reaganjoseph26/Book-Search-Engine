@@ -9,7 +9,7 @@ const SavedBooks = () => {
 
   const { loading, data } = useQuery(GET_ME);
   console.log(data)
-  const [deleteBook, {error}] = useMutation(DELETE_BOOK);
+  const [deleteBook] = useMutation(DELETE_BOOK);
 
   const userData = data?.me || {};
   console.log(userData)

@@ -5,12 +5,14 @@ const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 
 // import our typeDefs and resolvers
-const { typeDefs, resolvers } = require('./schemas');
+const { resolvers, typeDefs} = require('./schemas');
 const db = require('./config/connection');
-const { authMiddleware } = require('./utils/auth');
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
+const { authMiddleware } = require('./utils/auth');
 
 
 // create a new Apollo server and pass in our schema data
@@ -24,8 +26,9 @@ const server = new ApolloServer({
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Serve up static assets
 if (process.env.NODE_ENV === 'production') {
@@ -35,6 +38,7 @@ if (process.env.NODE_ENV === 'production') {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
+
 
 db.once('open', () => {
   app.listen(PORT, () => {
