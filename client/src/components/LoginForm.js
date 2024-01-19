@@ -34,16 +34,18 @@ const LoginForm = () => {
 
 
       Auth.login(data.login.token);
+      localStorage.setItem("email", userFormData.email)
+      localStorage.setItem("password", userFormData.password)
     } catch (err) {
       console.error(err);
       setShowAlert(true);
     }
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
+    // setUserFormData({
+    //   username: '',
+    //   email: '',
+    //   password: '',
+    // });
   };
 
   return (

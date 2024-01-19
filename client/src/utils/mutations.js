@@ -53,3 +53,24 @@ export const DELETE_BOOK = gql`
         }
     }
 `
+
+export const GET_SAVEDBOOKS = gql`
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
+            token
+            user {
+                _id
+                username
+                bookCount
+                savedBooks {
+                  bookId
+                  authors
+                  description
+                  image 
+                  link
+                  title 
+                  }
+            }
+        }
+    }
+`
