@@ -9,7 +9,7 @@ const { resolvers, typeDefs} = require('./schemas');
 const db = require('./config/connection');
 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.MONGODB_URI || 3002;
 const app = express();
 
 const { authMiddleware } = require('./utils/auth');
